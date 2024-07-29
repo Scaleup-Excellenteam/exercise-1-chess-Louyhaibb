@@ -37,4 +37,8 @@ public:
 	Chess& operator=(const Chess&) = delete;
 	string getInput();
 	void setCodeResponse(int codeResponse);
+    char GetPieceAt(int row, int col) const {return m_board[row][col];};
+    bool ReturnTurn() const {return m_turn;};
+    void setBoard(std::pair<int,int> cord,char col) {m_board[cord.first][cord.second] = col;}
+
 };

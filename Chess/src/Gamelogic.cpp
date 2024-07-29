@@ -3,7 +3,7 @@
 #include "../include/Pawn.h"
 #include "../include/Knight.h"
 #include "../include/Bishop.h"
-#include "../include/Rock.h"
+#include "../include/Rook.h"
 #include "../include/Queen.h"
 #include "../include/King.h"
 #include <sstream>
@@ -44,7 +44,7 @@ int GameLogic::processTheInput(const std::string& input) {
     }
 
     int code = checkMovement(parsedInput);
-    codeResponseHandle(code, parsedInput[0], parsedInput[1], chess->getPieceAt(parsedInput[0].first, parsedInput[0].second));
+    codeResponseHandle(code, parsedInput[0], parsedInput[1], chess->GetPieceAt(parsedInput[0].first, parsedInput[0].second));
     return code;
 }
 
@@ -53,13 +53,13 @@ int GameLogic::checkMovement(const std::vector<std::pair<int, int>>& cords) {
     Piece* target = searchForPiece(cords[1]);
 
     if (piece) {
-        if ((chess->getTurn() && piece->getColor() == 'b') || (!chess->getTurn() && piece->getColor() == 'w')) {
+        if ((chess->ReturnTurn() && piece->GetColor() == 'b') || (!chess->ReturnTurn() && piece->GetColor() == 'w')) {
             return 12;
         }
-        if (target && piece->getColor() == target->getColor()) {
+        if (target && piece->GetColor() == target->GetColor()) {
             return 13;
         }
-        vector<pair<int, int>> vec = piece->pieceMoves();
+        vector<pair<int, int>> vec = piece->PieceMoves();
         for (const auto& move : vec) {
             if (move.first == cords[1].first && move.second == cords[1].second) {
                 King* whiteKing = dynamic_cast<King*>(getKing('w'));
@@ -73,23 +73,23 @@ int GameLogic::checkMovement(const std::vector<std::pair<int, int>>& cords) {
                 if (blackKing)
                     blackInDanger = blackKing->isInDanger();
 
-                if (whiteInDanger && chess->getTurn()) {
+                if (whiteInDanger && chess->ReturnTurn()) {
                     chess->setBoard(cords[0], piece->getType());
                     chess->setBoard(cords[1], ' ');
                     return 31;
                 }
 
-                if (blackInDanger && !chess->getTurn()) {
+                if (blackInDanger && !chess->ReturnTurn()) {
                     chess->setBoard(cords[0], piece->getType());
                     chess->setBoard(cords[1], ' ');
                     return 31;
                 }
-                if (whiteInDanger && !chess->getTurn())
+                if (whiteInDanger && !chess->ReturnTurn())
                     return 41;
-                if (blackInDanger && chess->getTurn())
+                if (blackInDanger && chess->ReturnTurn())
                     return 41;
                 if (target) {
-                    target->setIsDead(true);
+                    target->SetIsDead(true);
                 }
                 return 42;
             }
@@ -101,7 +101,7 @@ int GameLogic::checkMovement(const std::vector<std::pair<int, int>>& cords) {
 
 Piece* GameLogic::searchForPiece(pair<int, int> cords) {
     for (Piece* piece : pieces) {
-        if (piece->piecePlace() == cords && !piece->isDead()) {
+        if (piece->PiecePlace() == cords && !piece->IsDead()) {
             return piece;
         }
     }
@@ -118,7 +118,7 @@ void GameLogic::codeResponseHandle(int codeResponse, std::pair<int, int>& oldCor
     if (codeResponse >= 41) {
         Piece* tmp = searchForPiece(oldCords);
         if (tmp)
-            tmp->setPiecePlace(newCords);
+            tmp->SetPiecePlace(newCords);
     }
 }
 
@@ -151,10 +151,10 @@ void GameLogic::queenArrays() {
 }
 
 void GameLogic::rockArrays() {
-    pieces.push_back(new Rock('w', { 3, 3 }, chess));
-    pieces.push_back(new Rock('w', { 3, 17 }, chess));
-    pieces.push_back(new Rock('b', { 17, 3 }, chess));
-    pieces.push_back(new Rock('b', { 17, 17 }, chess));
+    pieces.push_back(new Rook('w', { 3, 3 }, chess));
+    pieces.push_back(new Rook('w', { 3, 17 }, chess));
+    pieces.push_back(new Rook('b', { 17, 3 }, chess));
+    pieces.push_back(new Rook('b', { 17, 17 }, chess));
 }
 
 void GameLogic::kingArrays() {

@@ -53,14 +53,6 @@ std::vector<std::pair<int, int>> Queen::PieceMoves() const {
     return Moves;
 }
 
-// Assignment operator to ensure proper copy semantics
-Piece &Queen::operator=(const Piece &rhs) {
-    if (this != &rhs) {
-        Piece::operator=(rhs);
-    }
-    return *this;
-}
-
 // Set new coordinates for the queen
 void Queen::SetPiecePlace(std::pair<int, int> newCords) {
     this->PieceCords = newCords;

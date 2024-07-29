@@ -23,7 +23,6 @@ public:
 
     // Disabled copy and assignment operations
     Queen(const Queen&) = delete;
-    Queen& operator=(const Queen&) = delete;
 };
 
 #endif // CHESS_QUEEN_H

@@ -26,7 +26,6 @@ public:
 
     // Disabled copy and assignment operations
     Pawn(const Pawn&) = delete;
-    Pawn& operator=(const Pawn&) = delete;
 };
 
 #endif // CHESS_PAWN_H

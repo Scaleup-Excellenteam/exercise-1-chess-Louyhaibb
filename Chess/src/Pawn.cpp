@@ -38,12 +38,6 @@ std::vector<std::pair<int, int>> Pawn::PieceMoves() const {
     return moves;
 }
 
-Piece& Pawn::operator=(const Piece& rhs) {
-    if (this != &rhs) {
-        Piece::operator=(rhs);  // Call base class assignment operator
-    }
-    return *this;
-}
 
 void Pawn::SetPiecePlace(std::pair<int, int> newCords) {
     PieceCords = newCords;

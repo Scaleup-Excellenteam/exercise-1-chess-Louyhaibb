@@ -9,11 +9,11 @@ Bishop::Bishop() = default;
 Bishop::Bishop(char color, std::pair<int, int> cord, Chess* chessObj) 
     : Piece(color, cord, chessObj) {}
 
-std::pair<int, int> Bishop::piecePlace() const {
-    return this->pieceCords;
+std::pair<int, int> Bishop::PiecePlace() const {
+    return this->PieceCords;
 }
 
-std::vector<std::pair<int, int>> Bishop::pieceMoves() const {
+std::vector<std::pair<int, int>> Bishop::PieceMoves() const {
     // This is vars for knowing were the lim of the col and the row
     const int rightMaxColLim = 17;
     const int leftMaxColLim = 3;
@@ -36,15 +36,16 @@ std::vector<std::pair<int, int>> Bishop::pieceMoves() const {
         // to get to the next position in the board
         // if it is a white piece we move down by adding to the row
         if (color == 'w') 
-            row = this->pieceCords.first + index;
+            row = this->PieceCords.first + index;
         // if it is a black piece we move up by subtracting from the row
         else 
-            row = this->pieceCords.first - index;
+            row = this->PieceCords.first - index;
         
-        col = this->pieceCords.second + index;
+        col = this->PieceCords.second + index;
         
         // Assuming Chess::getPieceAt is a function that returns the piece at the given coordinates
-        char piece = chess->getPieceAt(row, col);
+
+        char piece = chess->GetPieceAt(row, col);
         if (piece == ' ' && col <= rightMaxColLim && subFlag) {
             moves.emplace_back(row, col);
         } else {
@@ -52,8 +53,8 @@ std::vector<std::pair<int, int>> Bishop::pieceMoves() const {
             subFlag = false;
         }
 
-        int leftCol = this->pieceCords.second - index;
-        char leftPiece = chess->getPieceAt(row, leftCol);
+        int leftCol = this->PieceCords.second - index;
+        char leftPiece =  chess->GetPieceAt(row, leftCol);
 
         // if we hit an empty spot that in the move direction for the piece
         if (leftPiece == ' ' && leftCol >= leftMaxColLim && subFlag2) {
@@ -76,13 +77,13 @@ std::vector<std::pair<int, int>> Bishop::pieceMoves() const {
 Piece& Bishop::operator=(const Piece& rhs) {
     if (this != &rhs) {
         Piece::operator=(rhs); // Call base class assignment operator
-        this->pieceCords = rhs.piecePlace(); // Assuming piecePlace returns the coordinates
+        this->PieceCords = rhs.PiecePlace(); // Assuming piecePlace returns the coordinates
     }
     return *this;
 }
 
-void Bishop::setPiecePlace(std::pair<int, int> newCords) {
-    this->pieceCords = newCords;
+void Bishop::SetPiecePlace(std::pair<int, int> newCords) {
+    this->PieceCords = newCords;
 }
 
 char Bishop::getType() {

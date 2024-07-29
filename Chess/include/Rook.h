@@ -9,7 +9,7 @@ public:
     Rook();
     std::pair<int, int> PiecePlace() const override;
     std::vector<std::pair<int, int>> PieceMoves() const override;
-    Piece& operator=(const Piece& rhs) override;
+    Piece& operator=(const Piece& rhs);
     void SetPiecePlace(std::pair<int, int> newCords) override;
     char getType() override;
 };

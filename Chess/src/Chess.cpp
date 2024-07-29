@@ -126,7 +126,7 @@ bool Chess::isExit() const {
 }
 
 // Execute the movement on board
-void Chess::execute() {
+void Chess::excute() {
     int row = (m_input[0] - 'a');
     int col = (m_input[1] - '1');
     char pieceInSource = m_boardString[(row * 8) + col];
@@ -159,12 +159,12 @@ void Chess::doTurn() {
             m_msg = "This movement will cause you checkmate\n";
             break;
         case 41:
-            execute();
+            excute();
             m_turn = !m_turn;
             m_msg = "The last movement was legal and caused check\n";
             break;
         case 42:
-            execute();
+            excute();
             m_turn = !m_turn;
             m_msg = "The last movement was legal\n";
             break;
@@ -222,4 +222,4 @@ void Chess::setCodeResponse(int codeResponse) {
         m_codeResponse = codeResponse;
 }
 
-char Chess::getPiece
+

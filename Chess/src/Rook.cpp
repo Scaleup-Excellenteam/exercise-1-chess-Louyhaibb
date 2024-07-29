@@ -1,29 +1,29 @@
-#include "../include/Rock.h"
+#include "../include/Rook.h"
 #include "../include/Chess.h"
 
 const int BOARD_SIZE = 8;  // Assuming a standard 8x8 chess board
 
-Rock::Rock(char color, std::pair<int, int> rockCord, Chess *chessObj)
+Rook::Rook(char color, std::pair<int, int> rockCord, Chess *chessObj)
     : Piece(color, rockCord, chessObj) {}
 
-Rock::Rock() = default;
+Rook::Rook() = default;
 
-std::pair<int, int> Rock::PiecePlace() const {
+std::pair<int, int> Rook::PiecePlace() const {
     return PieceCords;
 }
 
-Piece &Rock::operator=(const Piece &rhs) {
+Piece &Rook::operator=(const Piece &rhs) {
     if (this != &rhs) {
         Piece::operator=(rhs);
     }
     return *this;
 }
 
-void Rock::SetPiecePlace(std::pair<int, int> newCords) {
+void Rook::SetPiecePlace(std::pair<int, int> newCords) {
     PieceCords = newCords;
 }
 
-std::vector<std::pair<int, int>> Rock::PieceMoves() const {
+std::vector<std::pair<int, int>> Rook::PieceMoves() const {
     std::vector<std::pair<int, int>> Moves;
     const int step = 2; // Step multiplier, assuming every second square is valid
 
@@ -54,6 +54,6 @@ std::vector<std::pair<int, int>> Rock::PieceMoves() const {
     return Moves;
 }
 
-char Rock::getType() {
+char Rook::getType() {
     return color == 'w' ? 'R' : 'r';
 }

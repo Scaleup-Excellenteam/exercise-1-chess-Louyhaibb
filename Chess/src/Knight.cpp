@@ -5,22 +5,22 @@ using namespace std;
 Knight::Knight(char color, std::pair<int, int> cord, Chess* chessObj)
     : Piece(color, cord, chessObj) {
     this->color = color;
-    this->pieceCords = cord;
+    this->PieceCords = cord;
 }
 
-std::pair<int, int> Knight::piecePlace() const {
-    return Piece::piecePlace();
+std::pair<int, int> Knight::PiecePlace() const {
+    return Piece::PiecePlace();
 }
 
-std::vector<std::pair<int, int>> Knight::pieceMoves() const {
+std::vector<std::pair<int, int>> Knight::PieceMoves() const {
     const int rightMaxColLim = 17;
     const int leftMaxColLim = 3;
     const int maxRow = 17;
     const int minRow = 3;
     
     std::vector<std::pair<int, int>> moves;
-    int knightCordRow = this->pieceCords.first;
-    int knightCordCol = this->pieceCords.second;
+    int knightCordRow = this->PieceCords.first;
+    int knightCordCol = this->PieceCords.second;
 
     if (knightCordRow + 2 <= maxRow) {
         if (knightCordCol + 4 <= rightMaxColLim) {
@@ -64,8 +64,8 @@ Piece& Knight::operator=(const Piece& rhs) {
     return *this;
 }
 
-void Knight::setPiecePlace(std::pair<int, int> newCords) {
-    this->pieceCords = newCords;
+void Knight::SetPiecePlace(std::pair<int, int> newCords) {
+    this->PieceCords = newCords;
 }
 
 char Knight::getType() {

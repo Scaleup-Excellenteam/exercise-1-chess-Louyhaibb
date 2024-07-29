@@ -13,13 +13,13 @@ public:
 
     Knight();
 
-    virtual std::pair<int, int> piecePlace() const override;
+    virtual std::pair<int, int> PiecePlace() const override;
 
-    virtual std::vector<std::pair<int, int>> pieceMoves() const override;
+    virtual std::vector<std::pair<int, int>> PieceMoves() const override;
 
     virtual Piece& operator=(const Piece& rhs) override;
 
-    void setPiecePlace(std::pair<int, int> newCords) override;
+    virtual  void SetPiecePlace(std::pair<int, int> newCords) override;
 
     char getType() override;
 };
